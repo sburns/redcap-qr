@@ -1,0 +1,46 @@
+{% extends "layout.html" %}
+
+
+{% block body %}
+
+<form id="form" role="form" method=get action="#">
+  <div class="form-group">
+    <label for="name">Patient Name</label>
+    <input id="name" name="name" type="text" class="form-control"placeholder="Enter patient name">
+  </div>
+  <div class="form-group">
+    <label for="rcform">Select REDCap Form in link</label>
+    <select id="rcform" name="rcform" class="form-control">
+      <option value="form1">Form 1</option>
+      <option value="form2">Form 2</option>
+      <option value="form3">Form 3</option>
+      <option value="form4">Form 4</option>
+      <!-- <option value=redcap form name>Human Name</select> -->
+    </select>
+  </div>
+  <button id='generator' type="submit" class="btn btn-default">Generate Code</button>
+</form>
+
+<div id="qr-code">
+</div>
+{% endblock %}
+
+{% block js %}
+$(document).ready(function () {
+  $("#form").bind('submit', function(e) {
+  e.preventDefault();
+  var ajax = $.ajax({
+    type: "POST",
+    data: $("#form").serialize(),
+    async: false,
+    url: $SCRIPT_ROOT + "/generate"});
+  ajax.done(function(data) {
+      console.log('success');
+      $("#qr-code").html('<img src="data:image/png;base64,' + data + '"/>');
+  });
+  ajax.fail(function(data){
+    console.log('error :');
+  });
+  });
+  });
+{% endblock %}

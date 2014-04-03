@@ -1,0 +1,13 @@
+Flask==0.10.1
+Jinja2==2.7.2
+MarkupSafe==0.19
+Pillow==2.4.0
+Werkzeug==0.9.4
+gunicorn==18.0
+itsdangerous==0.24
+py==1.4.20
+-e git://github.com/ojii/pymaging.git@596a08fce5664e58d6e8c96847393fbe987783f2#egg=pymaging-master
+-e git://github.com/ojii/pymaging-png.git@83d85c44e4b2342818e6c068065e031a9f81bb9f#egg=pymaging_png-master
+pytest==2.5.2
+qrcode==4.0.4
+six==1.6.1
